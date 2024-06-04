@@ -1,0 +1,6 @@
+@KalashnikovGroupWepApiApp_HostAddress = http://localhost:5114
+
+GET {{KalashnikovGroupWepApiApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
