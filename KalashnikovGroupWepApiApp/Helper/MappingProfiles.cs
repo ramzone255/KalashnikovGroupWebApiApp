@@ -11,6 +11,7 @@ namespace KalashnikovGroupWepApiApp.Helper
         {
             CreateMap<Components, ComponentsDto>();
             CreateMap<OperationsTypes, OperationsTypesDto>();
+            CreateMap<Post, PostDto>();
         }
     }
 }
