@@ -10,6 +10,7 @@ namespace KalashnikovGroupWepApiApp.Helper
         public MappingProfiles()
         {
             CreateMap<Components, ComponentsDto>();
+            CreateMap<OperationsTypes, OperationsTypesDto>();
         }
     }
 }

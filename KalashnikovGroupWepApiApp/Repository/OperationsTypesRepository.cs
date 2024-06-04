@@ -14,11 +14,6 @@ namespace KalashnikovGroupWepApiApp.Repository
             _context = context;
         }
 
-        public ICollection<Operations> GetOperationsByOperationsTypes(int Operations)
-        {
-            return _context.OperationsTypes.Where(e => e.Operations == Operations).Select(c => c.Pokemon).ToList();
-        }
-
         public ICollection<OperationsTypes> GetOperationsTypes()
         {
             return _context.OperationsTypes.OrderBy(p => p.operations_types).ToList();
