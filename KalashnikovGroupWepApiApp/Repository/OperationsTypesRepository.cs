@@ -1,7 +1,7 @@
 ﻿using KalashnikovGroupWepApiApp.Data;
 using System.ComponentModel;
 using KalashnikovGroupWepApiApp.Models;
-using KalashnikovGroupWepApiApp.Interface;
+using KalashnikovGroupWepApiApp.Repository.Interface;
 
 namespace KalashnikovGroupWepApiApp.Repository
 {

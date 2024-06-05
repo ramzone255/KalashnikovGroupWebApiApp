@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using KalashnikovGroupWepApiApp.Dto;
-using KalashnikovGroupWepApiApp.Interface;
 using KalashnikovGroupWepApiApp.Models;
 using KalashnikovGroupWepApiApp.Repository;
+using KalashnikovGroupWepApiApp.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 

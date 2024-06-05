@@ -1,6 +1,6 @@
 ﻿using KalashnikovGroupWepApiApp.Data;
-using KalashnikovGroupWepApiApp.Interface;
 using KalashnikovGroupWepApiApp.Models;
+using KalashnikovGroupWepApiApp.Repository.Interface;
 
 namespace KalashnikovGroupWepApiApp.Repository
 {
@@ -11,6 +11,11 @@ namespace KalashnikovGroupWepApiApp.Repository
         public PostRepository(DataContext context)
         {
             _context = context;
+        }
+
+        public ICollection<Employees> GetEmployeesFromAPost(int postId)
+        {
+            return _context.Employees.Where(c => c.Post.id_post == postId).ToList();
         }
 
         public ICollection<Post> GetPost()
@@ -26,6 +31,11 @@ namespace KalashnikovGroupWepApiApp.Repository
         public Post GetPost(string denomination)
         {
             return _context.Post.Where(p => p.denomination == denomination).FirstOrDefault();
+        }
+
+        public Post GetPostByEmployees(int employeesId)
+        {
+            return _context.Employees.Where(o => o.id_employess == employeesId).Select(c => c.Post).FirstOrDefault();
         }
 
         public bool PostExists(int ps_id)

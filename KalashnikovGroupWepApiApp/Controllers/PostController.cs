@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using KalashnikovGroupWepApiApp.Data;
 using KalashnikovGroupWepApiApp.Dto;
-using KalashnikovGroupWepApiApp.Interface;
 using KalashnikovGroupWepApiApp.Models;
 using KalashnikovGroupWepApiApp.Repository;
+using KalashnikovGroupWepApiApp.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.Metrics;
 
 namespace KalashnikovGroupWepApiApp.Controllers
 {
@@ -45,6 +46,19 @@ namespace KalashnikovGroupWepApiApp.Controllers
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+
+            return Ok(Post);
+        }
+        [HttpGet("/employees/{id_employees}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(200, Type = typeof(Post))]
+        public IActionResult GetEmployeesOfAnPost(int id_employees)
+        {
+            var Post = _mapper.Map<PostDto>(
+                _postRepository.GetPostByEmployees(id_employees));
+
+            if (!ModelState.IsValid)
+                return BadRequest();
 
             return Ok(Post);
         }

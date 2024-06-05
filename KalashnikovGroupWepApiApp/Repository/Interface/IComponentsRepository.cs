@@ -1,6 +1,6 @@
 ﻿using KalashnikovGroupWepApiApp.Models;
 
-namespace KalashnikovGroupWepApiApp.Interface
+namespace KalashnikovGroupWepApiApp.Repository.Interface
 {
     public interface IComponentsRepository
     {

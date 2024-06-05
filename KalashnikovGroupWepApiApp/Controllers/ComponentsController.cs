@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using KalashnikovGroupWepApiApp.Data;
 using KalashnikovGroupWepApiApp.Dto;
-using KalashnikovGroupWepApiApp.Interface;
 using KalashnikovGroupWepApiApp.Models;
 using KalashnikovGroupWepApiApp.Repository;
+using KalashnikovGroupWepApiApp.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KalashnikovGroupWepApiApp.Controllers

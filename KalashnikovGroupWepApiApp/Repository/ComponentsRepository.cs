@@ -1,14 +1,14 @@
 ﻿using KalashnikovGroupWepApiApp.Data;
 using System.ComponentModel;
 using KalashnikovGroupWepApiApp.Models;
-using KalashnikovGroupWepApiApp.Interface;
+using KalashnikovGroupWepApiApp.Repository.Interface;
+using AutoMapper;
 
 namespace KalashnikovGroupWepApiApp.Repository
 {
     public class ComponentsRepository : IComponentsRepository
     {
         private readonly DataContext _context;
-
         public ComponentsRepository(DataContext context)
         {
             _context = context;
