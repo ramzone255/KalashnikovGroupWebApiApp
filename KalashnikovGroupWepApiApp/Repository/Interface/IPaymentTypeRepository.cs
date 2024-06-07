@@ -4,9 +4,9 @@ namespace KalashnikovGroupWepApiApp.Repository.Interface
 {
     public interface IPaymentTypeRepository
     {
-        ICollection<PaymentType> GetPaymentType();
-        PaymentType GetPaymentType(int id_payments_type);
-        PaymentType GetPaymentType(string denomination);
+        ICollection<PaymentType> GetPaymentTypeCollection();
+        PaymentType GetPaymentTypeId(int id_payments_type);
+        PaymentType GetPaymentTypeDenomination(string denomination);
         bool PaymentTypeExists(int pt_id);
     }
 }

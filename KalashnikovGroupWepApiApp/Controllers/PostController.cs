@@ -24,9 +24,9 @@ namespace KalashnikovGroupWepApiApp.Controllers
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Post>))]
 
-        public IActionResult GetPost()
+        public IActionResult GetPostCollection()
         {
-            var Post = _mapper.Map<List<PostDto>>(_postRepository.GetPost());
+            var Post = _mapper.Map<List<PostDto>>(_postRepository.GetPostCollection());
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -40,25 +40,12 @@ namespace KalashnikovGroupWepApiApp.Controllers
         public IActionResult GetPost_ps(int ps_id)
         {
             if (!_postRepository.PostExists(ps_id))
-                return NotFound();
+                return BadRequest(new {message = "Error: Invalid Id" } );
 
-            var Post = _mapper.Map<PostDto>(_postRepository.GetPost(ps_id));
+            var Post = _mapper.Map<PostDto>(_postRepository.GetPostId(ps_id));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
-            return Ok(Post);
-        }
-        [HttpGet("/employees/{id_employees}")]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(200, Type = typeof(Post))]
-        public IActionResult GetEmployeesOfAnPost(int id_employees)
-        {
-            var Post = _mapper.Map<PostDto>(
-                _postRepository.GetPostByEmployees(id_employees));
-
-            if (!ModelState.IsValid)
-                return BadRequest();
 
             return Ok(Post);
         }

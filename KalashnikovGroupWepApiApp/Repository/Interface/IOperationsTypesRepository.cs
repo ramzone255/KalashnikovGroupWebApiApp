@@ -4,9 +4,9 @@ namespace KalashnikovGroupWepApiApp.Repository.Interface
 {
     public interface IOperationsTypesRepository
     {
-        ICollection<OperationsTypes> GetOperationsTypes();
-        OperationsTypes GetOperationsTypes(int operations_types);
-        OperationsTypes GetOperationsTypes(string denomination);
+        ICollection<OperationsTypes> GetOperationsTypesCollection();
+        OperationsTypes GetOperationsTypesId(int operations_types);
+        OperationsTypes GetOperationsTypesDenomination(string denomination);
         bool OperationsTypesExists(int op_id);
     }
 }

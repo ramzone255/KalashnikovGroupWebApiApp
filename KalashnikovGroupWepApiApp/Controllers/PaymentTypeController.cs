@@ -25,7 +25,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
 
         public IActionResult GetPaymentType()
         {
-            var PaymentType = _mapper.Map<List<PaymentTypeDto>>(_paymenttypeRepository.GetPaymentType());
+            var PaymentType = _mapper.Map<List<PaymentTypeDto>>(_paymenttypeRepository.GetPaymentTypeCollection());
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -39,9 +39,9 @@ namespace KalashnikovGroupWepApiApp.Controllers
         public IActionResult GetPaymentType_pt(int pt_id)
         {
             if (!_paymenttypeRepository.PaymentTypeExists(pt_id))
-                return NotFound();
+                return BadRequest(new { message = "Error: Invalid Id" });
 
-            var PaymentType = _mapper.Map<PaymentTypeDto>(_paymenttypeRepository.GetPaymentType(pt_id));
+            var PaymentType = _mapper.Map<PaymentTypeDto>(_paymenttypeRepository.GetPaymentTypeId(pt_id));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

@@ -13,17 +13,17 @@ namespace KalashnikovGroupWepApiApp.Repository
             _context = context;
         }
 
-        public ICollection<PaymentType> GetPaymentType()
+        public ICollection<PaymentType> GetPaymentTypeCollection()
         {
             return _context.PaymentType.OrderBy(p => p.id_payments_type).ToList();
         }
 
-        public PaymentType GetPaymentType(int id_payments_type)
+        public PaymentType GetPaymentTypeId(int id_payments_type)
         {
             return _context.PaymentType.Where(p => p.id_payments_type == id_payments_type).FirstOrDefault();
         }
 
-        public PaymentType GetPaymentType(string denomination)
+        public PaymentType GetPaymentTypeDenomination(string denomination)
         {
             return _context.PaymentType.Where(p => p.denomination == denomination).FirstOrDefault();
         }

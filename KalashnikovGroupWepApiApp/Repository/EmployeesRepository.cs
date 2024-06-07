@@ -22,24 +22,14 @@ namespace KalashnikovGroupWepApiApp.Repository
             return _context.Employees.Any(p => p.id_employess == employees_id);
         }
 
-        public ICollection<Deal> GetDealFromAEmployees(int employeesId)
-        {
-            return _context.Deal.Where(c => c.Employees.id_employess == employeesId).ToList();
-        }
-
-        public ICollection<Employees> GetEmployees()
+        public ICollection<Employees> GetEmployeesCollection()
         {
             return _context.Employees.OrderBy(p => p.id_employess).ToList();
         }
 
-        public Employees GetEmployees(int id_employess)
+        public Employees GetEmployeesId(int id_employess)
         {
             return _context.Employees.Where(p => p.id_employess == id_employess).FirstOrDefault();
-        }
-
-        public Employees GetEmployeesByDeal(int dealId)
-        {
-            return _context.Deal.Where(o => o.id_deal == dealId).Select(c => c.Employees).FirstOrDefault();
         }
 
         public Employees GetEmployeesMail(string mail)

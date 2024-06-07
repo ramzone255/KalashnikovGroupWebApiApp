@@ -25,7 +25,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Employees>))]
         public IActionResult GetEmployees()
         {
-            var Employees = _mapper.Map<List<EmployeesDto>>(_employeesRepository.GetEmployees());
+            var Employees = _mapper.Map<List<EmployeesDto>>(_employeesRepository.GetEmployeesCollection());
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -39,25 +39,12 @@ namespace KalashnikovGroupWepApiApp.Controllers
         public IActionResult Getemployees_id(int employees_id)
         {
             if (!_employeesRepository.EmployeesExists(employees_id))
-                return NotFound();
+                return BadRequest(new { message = "Error: Invalid Id" });
 
-            var Employees = _mapper.Map<EmployeesDto>(_employeesRepository.GetEmployees(employees_id));
+            var Employees = _mapper.Map<EmployeesDto>(_employeesRepository.GetEmployeesId(employees_id));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
-            return Ok(Employees);
-        }
-        [HttpGet("/deal/{id_deal}")]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(200, Type = typeof(Employees))]
-        public IActionResult GetDealOfAnEmployees(int id_deal)
-        {
-            var Employees = _mapper.Map<EmployeesDto>(
-                _employeesRepository.GetEmployeesByDeal(id_deal));
-
-            if (!ModelState.IsValid)
-                return BadRequest();
 
             return Ok(Employees);
         }

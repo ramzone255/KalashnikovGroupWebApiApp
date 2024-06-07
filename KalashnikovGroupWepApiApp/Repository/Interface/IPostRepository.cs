@@ -5,11 +5,9 @@ namespace KalashnikovGroupWepApiApp.Repository.Interface
 {
     public interface IPostRepository
     {
-        ICollection<Post> GetPost();
-        Post GetPost(int id_post);
-        Post GetPost(string denomination);
-        ICollection<Employees> GetEmployeesFromAPost(int postId);
-        Post GetPostByEmployees(int employeesId);
+        ICollection<Post> GetPostCollection();
+        Post GetPostId(int id_post);
+        Post GetPostDenomination(string denomination);
         bool PostExists(int ps_id);
     }
 }

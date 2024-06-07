@@ -24,7 +24,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<OperationsTypes>))]
         public IActionResult GetOperationsTypes()
         {
-            var OperationsTypes = _mapper.Map<List<OperationsTypesDto>>(_operationstypesRepository.GetOperationsTypes());
+            var OperationsTypes = _mapper.Map<List<OperationsTypesDto>>(_operationstypesRepository.GetOperationsTypesCollection());
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -37,9 +37,9 @@ namespace KalashnikovGroupWepApiApp.Controllers
         public IActionResult GetOperationsTypes_op(int op_id)
         {
             if (!_operationstypesRepository.OperationsTypesExists(op_id))
-                return NotFound();
+                return BadRequest(new { message = "Error: Invalid Id" });
 
-            var OperationsTypes = _mapper.Map<OperationsTypesDto>(_operationstypesRepository.GetOperationsTypes(op_id));
+            var OperationsTypes = _mapper.Map<OperationsTypesDto>(_operationstypesRepository.GetOperationsTypesId(op_id));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

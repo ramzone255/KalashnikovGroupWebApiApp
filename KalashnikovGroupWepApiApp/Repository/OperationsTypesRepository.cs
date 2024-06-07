@@ -14,17 +14,17 @@ namespace KalashnikovGroupWepApiApp.Repository
             _context = context;
         }
 
-        public ICollection<OperationsTypes> GetOperationsTypes()
+        public ICollection<OperationsTypes> GetOperationsTypesCollection()
         {
             return _context.OperationsTypes.OrderBy(p => p.operations_types).ToList();
         }
 
-        public OperationsTypes GetOperationsTypes(int operations_types)
+        public OperationsTypes GetOperationsTypesId(int operations_types)
         {
             return _context.OperationsTypes.Where(p => p.operations_types == operations_types).FirstOrDefault();
         }
 
-        public OperationsTypes GetOperationsTypes(string denomination)
+        public OperationsTypes GetOperationsTypesDenomination(string denomination)
         {
             return _context.OperationsTypes.Where(p => p.denomination == denomination).FirstOrDefault();
         }

@@ -13,29 +13,20 @@ namespace KalashnikovGroupWepApiApp.Repository
             _context = context;
         }
 
-        public ICollection<Employees> GetEmployeesFromAPost(int postId)
-        {
-            return _context.Employees.Where(c => c.Post.id_post == postId).ToList();
-        }
 
-        public ICollection<Post> GetPost()
+        public ICollection<Post> GetPostCollection()
         {
             return _context.Post.OrderBy(p => p.id_post).ToList();
         }
 
-        public Post GetPost(int id_post)
+        public Post GetPostId(int id_post)
         {
             return _context.Post.Where(p => p.id_post == id_post).FirstOrDefault();
         }
 
-        public Post GetPost(string denomination)
+        public Post GetPostDenomination(string denomination)
         {
             return _context.Post.Where(p => p.denomination == denomination).FirstOrDefault();
-        }
-
-        public Post GetPostByEmployees(int employeesId)
-        {
-            return _context.Employees.Where(o => o.id_employess == employeesId).Select(c => c.Post).FirstOrDefault();
         }
 
         public bool PostExists(int ps_id)

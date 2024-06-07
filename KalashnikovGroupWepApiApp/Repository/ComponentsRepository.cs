@@ -3,6 +3,7 @@ using System.ComponentModel;
 using KalashnikovGroupWepApiApp.Models;
 using KalashnikovGroupWepApiApp.Repository.Interface;
 using AutoMapper;
+using System.Diagnostics.Metrics;
 
 namespace KalashnikovGroupWepApiApp.Repository
 {
@@ -19,19 +20,43 @@ namespace KalashnikovGroupWepApiApp.Repository
             return _context.Components.Any(p => p.id_components == comp_id);
         }
 
-        public ICollection<Components> GetComponents()
+        public ICollection<Components> GetComponentsCollection()
         {
             return _context.Components.OrderBy(p => p.id_components).ToList();
         }
 
-        public Components GetComponents(int id_components)
+        public Components GetComponentsId(int id_components)
         {
             return _context.Components.Where(p => p.id_components == id_components).FirstOrDefault();
         }
 
-        public Components GetComponents(string denomination)
+        public Components GetComponentsDenomination(string denomination)
         {
             return _context.Components.Where(p => p.denomination == denomination).FirstOrDefault();
+        }
+
+        public bool CreateComponents(Components components_create)
+        {
+            _context.Add(components_create);
+            return Save();
+        }
+
+        public bool UpdateComponents(Components components_update)
+        {
+            _context.Update(components_update);
+            return Save();
+        }
+
+        public bool DeleteComponents(Components components_delete)
+        {
+            _context.Remove(components_delete);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }
