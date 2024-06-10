@@ -32,5 +32,29 @@ namespace KalashnikovGroupWepApiApp.Repository
         {
             return _context.PaymentType.Any(p => p.id_payments_type == pt_id);
         }
+
+        public bool CreatePaymentType(PaymentType paymenttype_create)
+        {
+            _context.Add(paymenttype_create);
+            return Save();
+        }
+
+        public bool UpdatePaymentType(PaymentType paymenttype_update)
+        {
+            _context.Update(paymenttype_update);
+            return Save();
+        }
+
+        public bool DeletePaymentType(PaymentType paymenttype_delete)
+        {
+            _context.Remove(paymenttype_delete);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
     }
 }

@@ -49,5 +49,89 @@ namespace KalashnikovGroupWepApiApp.Controllers
 
             return Ok(Post);
         }
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreatePost([FromBody] PostDto post_create)
+        {
+            if (post_create == null)
+                return BadRequest(ModelState);
+
+            var components = _postRepository.GetPostCollection()
+                .Where(c => c.denomination.Trim().ToUpper() == post_create.denomination.TrimEnd().ToUpper())
+                .FirstOrDefault();
+
+            if (components != null)
+            {
+                ModelState.AddModelError("", "Component already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var postMap = _mapper.Map<Post>(post_create);
+
+            if (!_postRepository.CreatePost(postMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
+        }
+
+        [HttpPut("{id_post}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdatePost(int id_post, [FromBody] PostDto post_update)
+        {
+            if (post_update == null)
+                return BadRequest(ModelState);
+
+            if (id_post != post_update.id_post)
+                return BadRequest(ModelState);
+
+            if (!_postRepository.PostExists(id_post))
+                return BadRequest(new { message = "Error: Invalid Id" });
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var PostMap = _mapper.Map<Post>(post_update);
+
+            if (!_postRepository.UpdatePost(PostMap))
+            {
+                ModelState.AddModelError("", "Something went wrong updating category");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id_post}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeletePost(int id_post)
+        {
+            if (!_postRepository.PostExists(id_post))
+            {
+                return BadRequest(new { message = "Error: Invalid Id" });
+            }
+
+            var Delete_Post = _postRepository.GetPostId(id_post);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_postRepository.DeletePost(Delete_Post))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting category");
+            }
+
+            return NoContent();
+        }
     }
 }

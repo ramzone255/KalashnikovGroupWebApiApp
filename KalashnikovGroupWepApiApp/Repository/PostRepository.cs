@@ -33,5 +33,29 @@ namespace KalashnikovGroupWepApiApp.Repository
         {
             return _context.Post.Any(p => p.id_post == ps_id);
         }
+
+        public bool CreatePost(Post post_create)
+        {
+            _context.Add(post_create);
+            return Save();
+        }
+
+        public bool UpdatePost(Post post_update)
+        {
+            _context.Update(post_update);
+            return Save();
+        }
+
+        public bool DeletePost(Post post_delete)
+        {
+            _context.Remove(post_delete);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
     }
 }

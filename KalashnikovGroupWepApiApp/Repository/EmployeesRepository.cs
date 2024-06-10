@@ -61,10 +61,5 @@ namespace KalashnikovGroupWepApiApp.Repository
         {
             return _context.Employees.Where(p => p.wage_rate == wage_rate).FirstOrDefault();
         }
-
-        public ICollection<Post> GetPostFromADeal(int gpfad_id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

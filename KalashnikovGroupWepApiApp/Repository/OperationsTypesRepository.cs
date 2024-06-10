@@ -33,5 +33,29 @@ namespace KalashnikovGroupWepApiApp.Repository
         {
             return _context.OperationsTypes.Any(p => p.operations_types == op_id);
         }
+
+        public bool CreateOperationsTypes(OperationsTypes operationstypes_create)
+        {
+            _context.Add(operationstypes_create);
+            return Save();
+        }
+
+        public bool UpdateOperationsTypes(OperationsTypes operationstypes_update)
+        {
+            _context.Update(operationstypes_update);
+            return Save();
+        }
+
+        public bool DeleteOperationsTypes(OperationsTypes operationstypes_delete)
+        {
+            _context.Remove(operationstypes_delete);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
     }
 }
