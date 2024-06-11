@@ -22,7 +22,7 @@ namespace KalashnikovGroupWepApiApp.Helper
             CreateMap<Payments, PaymentsDto>();
             CreateMap<PaymentsDto, Payments>();
             CreateMap<Operations, OperationsDto>();
-            CreateMap<OperationsDto, OperationsDto>();
+            CreateMap<OperationsDto, Operations>();
             CreateMap<Deal, DealDto>();
             CreateMap<DealDto, Deal>();
             CreateMap<Payday, PaydayDto>();

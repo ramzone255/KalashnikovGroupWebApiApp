@@ -17,6 +17,19 @@ namespace KalashnikovGroupWepApiApp.Repository
             _mapper = mapper;
         }
 
+        public bool CreatePayments(Payments payments_create)
+        {
+            _context.Add(payments_create);
+            return Save();
+        }
+
+        public bool DeletePayments(Payments payments_delete)
+        {
+            _context.Remove(payments_delete);
+            return Save();
+        }
+
+
         public Payments GetPaymentsAmount(float amount)
         {
             return _context.Payments.Where(p => p.amount == amount).FirstOrDefault();
@@ -42,9 +55,26 @@ namespace KalashnikovGroupWepApiApp.Repository
             return _context.Payments.Where(p => p.id_payments == id_payments).FirstOrDefault();
         }
 
+        public ICollection<Payments> GetPaymentsOfAPaymentsType(int ptId)
+        {
+            return _context.Payments.Where(r => r.PaymentType.id_payments_type == ptId).ToList();
+        }
+
         public bool PaymentsExists(int payments_id)
         {
             return _context.Payments.Any(p => p.id_payments == payments_id);
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public bool UpdatePayments(Payments payments_update)
+        {
+            _context.Update(payments_update);
+            return Save();
         }
     }
 

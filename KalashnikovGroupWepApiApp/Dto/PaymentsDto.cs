@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using KalashnikovGroupWepApiApp.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace KalashnikovGroupWepApiApp.Dto
 {
