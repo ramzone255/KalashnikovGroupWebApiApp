@@ -18,9 +18,21 @@ namespace KalashnikovGroupWepApiApp.Repository
             _mapper = mapper;
         }
 
+        public bool CreateDeal(Deal deal_create)
+        {
+            _context.Add(deal_create);
+            return Save();
+        }
+
         public bool DealExists(int id_deal)
         {
             return _context.Deal.Any(p => p.id_deal == id_deal);
+        }
+
+        public bool DeleteDeal(Deal deal_delete)
+        {
+            _context.Remove(deal_delete);
+            return Save();
         }
 
         public ICollection<Deal> GetDealCollection()
@@ -38,6 +50,16 @@ namespace KalashnikovGroupWepApiApp.Repository
             return _context.Deal.Where(p => p.id_deal == id_deal).FirstOrDefault();
         }
 
+        public ICollection<Deal> GetDealOfAEmployees(int id_employees)
+        {
+            return _context.Deal.Where(r => r.Employees.id_employess == id_employees).ToList();
+        }
+
+        public ICollection<Deal> GetDealOfAOperations(int id_operations)
+        {
+            return _context.Deal.Where(r => r.Operations.id_operations == id_operations).ToList();
+        }
+
         public Deal GetDealQuality(int quality)
         {
             return _context.Deal.Where(p => p.quality == quality).FirstOrDefault();
@@ -46,6 +68,18 @@ namespace KalashnikovGroupWepApiApp.Repository
         public Deal GetDealTotalAmount(float total_amount)
         {
             return _context.Deal.Where(p => p.total_amount == total_amount).FirstOrDefault();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public bool UpdateDeal(Deal deal_update)
+        {
+            _context.Update(deal_update);
+            return Save();
         }
     }
 }

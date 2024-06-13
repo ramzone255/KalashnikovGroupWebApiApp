@@ -17,6 +17,18 @@ namespace KalashnikovGroupWepApiApp.Repository
             _mapper = mapper;
         }
 
+        public bool CreateEmployees(Employees employees_create)
+        {
+            _context.Add(employees_create);
+            return Save();
+        }
+
+        public bool DeleteEmployees(Employees employees_delete)
+        {
+            _context.Remove(employees_delete);
+            return Save();
+        }
+
         public bool EmployeesExists(int employees_id)
         {
             return _context.Employees.Any(p => p.id_employess == employees_id);
@@ -47,6 +59,11 @@ namespace KalashnikovGroupWepApiApp.Repository
             return _context.Employees.Where(p => p.name == name).FirstOrDefault();
         }
 
+        public ICollection<Employees> GetEmployeesOfAPosts(int id_post)
+        {
+            return _context.Employees.Where(r => r.Post.id_post == id_post).ToList();
+        }
+
         public Employees GetEmployeesPassword(string password)
         {
             return _context.Employees.Where(p => p.password == password).FirstOrDefault();
@@ -60,6 +77,18 @@ namespace KalashnikovGroupWepApiApp.Repository
         public Employees GetEmployeesWageRate(float wage_rate)
         {
             return _context.Employees.Where(p => p.wage_rate == wage_rate).FirstOrDefault();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public bool UpdateEmployees(Employees employees_update)
+        {
+            _context.Update(employees_update);
+            return Save();
         }
     }
 }

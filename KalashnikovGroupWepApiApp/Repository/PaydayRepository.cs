@@ -18,6 +18,18 @@ namespace KalashnikovGroupWepApiApp.Repository
             _mapper = mapper;
         }
 
+        public bool CreatePayday(Payday payday_create)
+        {
+            _context.Add(payday_create);
+            return Save();
+        }
+
+        public bool DeletePayday(Payday payday_delete)
+        {
+            _context.Remove(payday_delete);
+            return Save();
+        }
+
         public ICollection<Payday> GetPaydayCollection()
         {
             return _context.Payday.OrderBy(p => p.id_payday).ToList();
@@ -46,6 +58,18 @@ namespace KalashnikovGroupWepApiApp.Repository
         public bool PaydayExists(int id_payday)
         {
             return _context.Payday.Any(p => p.id_payday == id_payday);
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public bool UpdatePayday(Payday payday_update)
+        {
+            _context.Update(payday_update);
+            return Save();
         }
     }
 }
