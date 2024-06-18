@@ -13,5 +13,6 @@ namespace KalashnikovGroupWepApiApp.Dto
         public string surname { get; set; }
         public string middlename { get; set; }
         public float wage_rate { get; set; }
+        public int Postid_post { get; set; }
     }
 }

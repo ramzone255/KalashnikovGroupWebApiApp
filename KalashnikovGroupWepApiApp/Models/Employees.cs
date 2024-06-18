@@ -13,6 +13,7 @@ namespace KalashnikovGroupWepApiApp.Models
         public string middlename { get; set; }
         public float wage_rate { get; set; }
         public Post Post { get; set; }
+        public int Postid_post { get; set; }
         public ICollection<Deal> Deal { get; set; }
     }
 }

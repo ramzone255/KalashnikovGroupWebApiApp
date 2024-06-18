@@ -50,7 +50,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
 
             return Ok(Employees);
         }
-        [HttpPost]
+        [HttpPost("POST")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreateEmployees([FromQuery] int id_employees, [FromQuery] int id_post, [FromBody] EmployeesDto employees_create)
@@ -85,7 +85,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
             return Ok("Successfully created");
         }
 
-        [HttpPut("{id_employees}")]
+        [HttpPut("PUT/{id_employees}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
@@ -114,7 +114,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id_employees}")]
+        [HttpDelete("DELETE/{id_employees}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]

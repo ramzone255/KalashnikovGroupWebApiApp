@@ -7,5 +7,7 @@ namespace KalashnikovGroupWepApiApp.Dto
         [Key]
         public int id_operations { get; set; }
         public float price { get; set; }
+        public int Componentsid_components { get; set; }
+        public int OperationsTypesoperations_types { get; set; }
     }
 }
