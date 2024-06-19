@@ -137,5 +137,23 @@ namespace KalashnikovGroupWepApiApp.Controllers
 
             return NoContent();
         }
+        [HttpPost("SingIn")]
+        [ProducesResponseType(200, Type = typeof(EmployeesDto))]
+        [ProducesResponseType(400)]
+        public IActionResult SingIn([FromBody] LoginDto loginDto)
+        {
+            if (loginDto == null)
+                return BadRequest(ModelState);
+
+            var employees = _employeesRepository.GetEmployeesCollection()
+                .FirstOrDefault(u => u.mail == loginDto.mail && u.password == loginDto.password);
+
+            if (employees == null)
+            {
+                return Unauthorized(new { message = "Неправильный login or password" });
+            }
+
+            return Ok(_mapper.Map<EmployeesDto>(employees));
+        }
     }
 }
