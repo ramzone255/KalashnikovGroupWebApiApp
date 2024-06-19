@@ -51,7 +51,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
 
             return Ok(Deal);
         }
-        [HttpPost]
+        [HttpPost("POST")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreateDeal([FromQuery] int id_deal, [FromQuery] int id_employees, [FromQuery] int id_operations, [FromBody] DealDto deal_create)
@@ -87,7 +87,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
             return Ok("Successfully created");
         }
 
-        [HttpPut("{id_deal}")]
+        [HttpPut("PUT/{id_deal}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
@@ -116,7 +116,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id_deal}")]
+        [HttpDelete("DELETE/{id_deal}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
