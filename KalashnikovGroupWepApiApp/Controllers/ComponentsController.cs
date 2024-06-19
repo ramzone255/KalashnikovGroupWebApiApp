@@ -21,7 +21,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
             _componentsRepository = componentsRepository;
             _mapper = mapper;
         }
-        [HttpGet("Components_Collection")]
+        [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Components>))]
         public IActionResult GetComponents()
         {
@@ -49,7 +49,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
 
             return Ok(Components);
         }
-        [HttpPost]
+        [HttpPost("POST")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreateComponents([FromBody] ComponentsDto components_create)
@@ -81,7 +81,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
             return Ok("Successfully created");
         }
 
-        [HttpPut("{id_components}")]
+        [HttpPut("PUT/{id_components}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
@@ -110,7 +110,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id_components}")]
+        [HttpDelete("DELETE/{id_components}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
