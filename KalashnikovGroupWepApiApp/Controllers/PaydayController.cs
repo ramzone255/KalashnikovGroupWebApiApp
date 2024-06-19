@@ -47,7 +47,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
 
             return Ok(Payday);
         }
-        [HttpPost]
+        [HttpPost("POST")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreatePayday([FromBody] PaydayDto payday_create)
@@ -79,7 +79,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
             return Ok("Successfully created");
         }
 
-        [HttpPut("{id_payday}")]
+        [HttpPut("PUT/{id_payday}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
@@ -108,7 +108,7 @@ namespace KalashnikovGroupWepApiApp.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id_payday}")]
+        [HttpDelete("DELETE/{id_payday}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
